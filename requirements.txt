@@ -1,0 +1,7 @@
+streamlit
+anthropic
+pillow
+pytesseract
+ics
+pytz
+python-dateutil
