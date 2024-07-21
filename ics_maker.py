@@ -118,7 +118,8 @@ def create_ics_event(event_details: Dict[str, Any]) -> Calendar:
     return c
 
 def generate_ics_from_text(text: str) -> Optional[Calendar]:
-    user_prompt = f"""Extract event details from the following text and format them as a JSON object with keys 'name', 'start_time', 'end_time', 'description', and 'location'. If no time zone is specified, assume Indian Standard Time (IST). If end_time is not specified, leave it as null. Ensure the JSON is valid and properly formatted. Respond only with the JSON object, no other text. Text: {text}"""
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    user_prompt = f"""Extract event details from the following text and format them as a JSON object with keys 'name', 'start_time', 'end_time', 'description', and 'location'. If no time zone is specified, assume Indian Standard Time (IST). If end_time is not specified, leave it as null. If no year is specified for dates, assume the current year. Today's date is {current_date}. Ensure the JSON is valid and properly formatted. Respond only with the JSON object, no other text. Text: {text}"""
     
     response = claude_request(user_prompt)
     
